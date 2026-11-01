@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #111211;
+  --foreground: #d8d0be;
 }
 
 @theme inline {
@@ -12,15 +12,417 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.archive-shell {
+  isolation: isolate;
+  position: relative;
+}
+
+.archive-atmosphere {
+  --pointer-x: 50vw;
+  --pointer-y: 35vh;
+  background:
+    radial-gradient(ellipse at 76% 7%, rgba(193, 138, 73, 0.2), transparent 36rem),
+    radial-gradient(ellipse at 4% 42%, rgba(107, 118, 108, 0.13), transparent 44rem),
+    radial-gradient(ellipse at 92% 78%, rgba(193, 138, 73, 0.13), transparent 42rem),
+    radial-gradient(ellipse at 50% 52%, rgba(193, 138, 73, 0.045), transparent 60rem),
+    linear-gradient(155deg, #171916 0%, #111211 42%, #171815 72%, #101110 100%);
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+}
+
+.archive-atmosphere::before,
+.archive-atmosphere::after {
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-atmosphere::before {
+  background-image:
+    linear-gradient(rgba(216, 208, 190, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 208, 190, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at 50% 34%, #000 0%, transparent 76%);
+}
+
+.archive-atmosphere::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+  opacity: 0.14;
+  z-index: 4;
+}
+
+.archive-cursor-light,
+.archive-blueprints,
+.archive-signal-nodes {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+.archive-cursor-light {
+  background: radial-gradient(
+    circle 34rem at var(--pointer-x) var(--pointer-y),
+    rgba(193, 138, 73, 0.17) 0%,
+    rgba(193, 138, 73, 0.09) 24%,
+    rgba(193, 138, 73, 0.035) 50%,
+    transparent 74%
+  );
+  opacity: 0;
+  transition: opacity 500ms ease;
+  z-index: 2;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .archive-cursor-light {
+    opacity: 1;
+  }
+}
+
+.archive-blueprints {
+  background-image:
+    linear-gradient(90deg, transparent 0 11%, rgba(193, 138, 73, 0.15) 11.05%, transparent 11.16% 100%),
+    linear-gradient(90deg, transparent 0 63%, rgba(216, 208, 190, 0.08) 63.05%, transparent 63.14% 100%),
+    linear-gradient(0deg, transparent 0 24%, rgba(193, 138, 73, 0.12) 24.05%, transparent 24.16% 100%),
+    linear-gradient(0deg, transparent 0 76%, rgba(216, 208, 190, 0.075) 76.05%, transparent 76.14% 100%),
+    linear-gradient(135deg, transparent 49.92%, rgba(193, 138, 73, 0.095) 50%, transparent 50.08%);
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  background-size: 100% 100%;
+  mask-image: radial-gradient(ellipse at 50% 48%, #000 0%, transparent 78%);
+  opacity: 0.68;
+  z-index: 2;
+}
+
+.archive-blueprints::before,
+.archive-blueprints::after {
+  content: "";
+  inset: -18%;
+  pointer-events: none;
+  position: absolute;
+}
+
+.archive-blueprints::before {
+  animation: archive-lines-drift 82s linear infinite;
+  background-image:
+    linear-gradient(0deg, transparent 49.7%, rgba(193, 138, 73, 0.25) 50%, transparent 50.3%),
+    linear-gradient(90deg, transparent 49.7%, rgba(216, 208, 190, 0.15) 50%, transparent 50.3%);
+  background-size: 100% 164px, 216px 100%;
+  opacity: 0.7;
+}
+
+.archive-blueprints::after {
+  animation: archive-highlight-travel 26s ease-in-out infinite alternate;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(193, 138, 73, 0.07) 42%,
+    rgba(193, 138, 73, 0.34) 50%,
+    rgba(193, 138, 73, 0.07) 58%,
+    transparent 100%
+  );
+  height: 1px;
+  left: -20%;
+  top: 24%;
+  transform: translateX(-50%);
+  width: 140%;
+}
+
+.archive-signal-nodes {
+  opacity: 0.66;
+  z-index: 3;
+}
+
+.archive-signal-node {
+  animation: archive-node-pulse 7s ease-in-out infinite;
+  background: #d6a35f;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(193, 138, 73, 0.52);
+  height: 4px;
+  position: absolute;
+  width: 3px;
+}
+
+.archive-signal-node--one {
+  animation-delay: -1.7s;
+  left: 11%;
+  top: 24%;
+}
+
+.archive-signal-node--two {
+  animation-delay: -4.4s;
+  left: 63%;
+  top: 76%;
+}
+
+.archive-signal-node--three {
+  animation-delay: -0.8s;
+  left: 86%;
+  top: 48%;
+}
+
+.archive-signal-runner {
+  animation: archive-signal-travel 32s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(193, 138, 73, 0.72), transparent);
+  height: 1px;
+  left: 11%;
+  opacity: 0.3;
+  position: absolute;
+  top: 24%;
+  transform-origin: left center;
+  width: 25vw;
+}
+
+.archive-section {
+  isolation: isolate;
+  position: relative;
+}
+
+.archive-section--about {
+  background: linear-gradient(112deg, rgba(38, 41, 38, 0.42), transparent 72%);
+}
+
+.archive-section--experience {
+  background:
+    radial-gradient(ellipse at 80% 34%, rgba(143, 101, 52, 0.075), transparent 36rem),
+    linear-gradient(180deg, rgba(18, 19, 17, 0.52), rgba(32, 34, 31, 0.16));
+}
+
+.archive-section--projects {
+  background:
+    linear-gradient(180deg, rgba(22, 24, 22, 0.72), rgba(17, 18, 17, 0.84)),
+    radial-gradient(ellipse at 10% 12%, rgba(118, 130, 121, 0.08), transparent 42rem);
+}
+
+.archive-section--skills {
+  background: linear-gradient(108deg, rgba(34, 37, 34, 0.52), transparent 75%);
+}
+
+.archive-section--education {
+  background:
+    radial-gradient(ellipse at 92% 50%, rgba(155, 108, 54, 0.09), transparent 34rem),
+    linear-gradient(90deg, rgba(16, 17, 16, 0.45), rgba(33, 35, 32, 0.2));
+}
+
+.archive-section--certifications {
+  background: linear-gradient(180deg, rgba(22, 24, 22, 0.78), rgba(17, 18, 17, 0.42));
+}
+
+.archive-section--contact {
+  background:
+    radial-gradient(ellipse at 72% 45%, rgba(153, 104, 49, 0.12), transparent 32rem),
+    linear-gradient(120deg, rgba(37, 39, 37, 0.36), transparent 74%);
+}
+
+.archive-hero::before {
+  background-image:
+    radial-gradient(ellipse at 70% 32%, rgba(193, 138, 73, 0.17), transparent 44%),
+    linear-gradient(135deg, rgba(37, 39, 37, 0.68), transparent 62%),
+    linear-gradient(rgba(216, 208, 190, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 208, 190, 0.045) 1px, transparent 1px);
+  background-size: auto, auto, 56px 56px, 56px 56px;
+  content: "";
+  inset: 0;
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.8) 62%, transparent 100%);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.archive-hero::after {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(193, 138, 73, 0.52) 48%,
+    transparent
+  );
+  content: "";
+  height: 66%;
+  opacity: 0.42;
+  pointer-events: none;
+  position: absolute;
+  right: max(calc((100vw - 80rem) / 2 + 3rem), 7%);
+  top: 17%;
+  width: 1px;
+  z-index: -1;
+}
+
+@keyframes archive-lines-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 164px, 216px 0;
+  }
+}
+
+@keyframes archive-highlight-travel {
+  from {
+    transform: translate3d(-12%, 0, 0);
+    top: 24%;
+  }
+  to {
+    transform: translate3d(12%, 0, 0);
+    top: 76%;
+  }
+}
+
+@keyframes archive-node-pulse {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: scale(0.75);
+  }
+  43% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  51% {
+    opacity: 0.32;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes archive-signal-travel {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateX(0) scaleX(0.15);
+  }
+  21% {
+    opacity: 0.34;
+  }
+  65% {
+    opacity: 0.18;
+    transform: translateX(50vw) scaleX(0.82);
+  }
+  79%,
+  100% {
+    opacity: 0;
+    transform: translateX(58vw) scaleX(0.25);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .archive-project-card,
+  .archive-panel-card {
+    position: relative;
+    transform: translateZ(0);
+    transition:
+      transform 300ms cubic-bezier(0.2, 0.75, 0.25, 1),
+      border-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .archive-project-card:hover,
+  .archive-panel-card:hover {
+    border-color: rgba(193, 138, 73, 0.82);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.26),
+      0 0 22px rgba(193, 138, 73, 0.12);
+    z-index: 2;
+  }
+
+  .archive-project-card:hover {
+    transform: translateZ(0) scale(1.025);
+  }
+
+  .archive-panel-card:hover {
+    transform: translateZ(0) scale(1.02);
+  }
+
+  .archive-project-card:focus-visible {
+    box-shadow: 0 0 0 2px rgba(193, 138, 73, 0.3);
+  }
+
+  .archive-project-tag,
+  .archive-interactive-chip {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .archive-project-tag:hover,
+  .archive-interactive-chip:hover {
+    background-color: #c18a49;
+    border-color: #e2bd83;
+    box-shadow: 0 0 10px rgba(193, 138, 73, 0.18);
+    color: #171714;
+    transform: translateY(-1px);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .archive-cursor-light {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-cursor-light {
+    display: none;
+  }
+
+  .archive-blueprints::before,
+  .archive-blueprints::after,
+  .archive-signal-node,
+  .archive-signal-runner {
+    animation: none;
+  }
+
+  .archive-signal-node {
+    opacity: 0.28;
+  }
+
+  .archive-signal-runner {
+    display: none;
+  }
+
+  .archive-project-card,
+  .archive-project-card:hover,
+  .archive-panel-card,
+  .archive-panel-card:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .archive-project-tag,
+  .archive-interactive-chip {
+    box-shadow: none;
+    transition: none;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
