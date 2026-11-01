@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ProjectCards } from "@/features/projects/ProjectsIndex";
-import { projects } from "@/features/projects/projectData";
+import { featuredProjects, projects } from "@/features/projects/projectData";
 import { AmbientBackground } from "./AmbientBackground";
 import { PortfolioNavigation } from "./PortfolioNavigation";
 
@@ -423,7 +423,7 @@ export function PortfolioHome() {
                 </Link>
               </div>
             ) : null}
-            <ProjectCards />
+            <ProjectCards items={featuredProjects} />
           </div>
         </section>
 

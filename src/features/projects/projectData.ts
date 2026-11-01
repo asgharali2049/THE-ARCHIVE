@@ -191,7 +191,7 @@ export const projects: Project[] = [
   },
   {
     slug: "lecassist",
-    number: "06",
+    number: "03",
     title: "LecAssist",
     category: "Speech AI / Deep Learning / Assistive Technology",
     summary:
@@ -244,13 +244,13 @@ export const projects: Project[] = [
     visual: {
       kind: "speech",
       accent: "#a9c2b5",
-      index: "SPEECH PIPELINE / 06",
+      index: "SPEECH PIPELINE / 03",
       caption: "Recording · transcription · diarization",
     },
   },
   {
     slug: "digital-behavior-mirror",
-    number: "03",
+    number: "04",
     title: "Digital Behavior Mirror",
     category: "Full-Stack Development / Personal Analytics / AI",
     summary:
@@ -305,13 +305,13 @@ export const projects: Project[] = [
     visual: {
       kind: "behavior",
       accent: "#84a9a0",
-      index: "ACTIVITY RECORD / 03",
+      index: "ACTIVITY RECORD / 04",
       caption: "Capture · session · reflection",
     },
   },
   {
     slug: "research-crew",
-    number: "05",
+    number: "06",
     title: "Research Crew",
     category: "Agentic AI / Research Automation",
     summary:
@@ -364,13 +364,13 @@ export const projects: Project[] = [
     visual: {
       kind: "research",
       accent: "#a9a0c1",
-      index: "RESEARCH SEQUENCE / 05",
+      index: "RESEARCH SEQUENCE / 06",
       caption: "Two roles · one structured report",
     },
   },
   {
     slug: "master-ai-vault",
-    number: "07",
+    number: "13",
     title: "Master AI Vault",
     category: "AI Knowledge Systems / Productivity",
     summary:
@@ -413,13 +413,306 @@ export const projects: Project[] = [
     visual: {
       kind: "knowledge",
       accent: "#c5ad85",
-      index: "KNOWLEDGE SYSTEM / 07",
+      index: "KNOWLEDGE SYSTEM / 13",
       caption: "Tools · references · learning paths",
     },
   },
   {
+    slug: "wc-shorts-pipeline",
+    number: "05",
+    title: "World Cup Shorts Pipeline",
+    category: "Agentic AI / Video Automation",
+    summary:
+      "A five-agent pipeline designed to turn completed football matches into short-form video content.",
+    description:
+      "A multi-agent CrewAI pipeline that processes completed football matches into short-form video content. It is a post-match workflow; this portfolio does not claim continuous operation or live publishing.",
+    problem:
+      "Turning a finished match into short-form content involves distinct research, writing, visual direction, media production, and publishing-preparation tasks. This pipeline assigns each stage to a specialized agent.",
+    approach:
+      "The Scout analyzes match events and selects moments; the Writer creates hooks, scripts, voiceovers, and captions; the Director establishes visual direction; the Producer generates audio and assembles vertical video; and the Publisher prepares platform-specific publishing.",
+    features: [
+      "Scout analyzes match events and selects potential moments.",
+      "Writer develops hooks, voiceover scripts, captions, and platform text.",
+      "Director sets visual direction for production.",
+      "Producer generates audio and assembles vertical video.",
+      "Publisher prepares YouTube, Instagram, and TikTok publishing integrations.",
+    ],
+    architecture:
+      "Five CrewAI agents run sequentially: Scout → Writer → Director → Producer → Publisher. Ollama Cloud and API-Football support the documented workflow; yt-dlp, edge-tts, MoviePy, and FFmpeg are used for media acquisition and production.",
+    diagrams: [
+      {
+        title: "Five-agent post-match workflow",
+        steps: [
+          "Scout\nMoment selection",
+          "Writer\nScripts + captions",
+          "Director\nVisual direction",
+          "Producer\nAudio + video",
+          "Publisher\nPlatform preparation",
+        ],
+      },
+    ],
+    technologies: [
+      "Python",
+      "CrewAI",
+      "Ollama Cloud",
+      "API-Football",
+      "yt-dlp",
+      "edge-tts",
+      "MoviePy",
+      "FFmpeg",
+    ],
+    decisions: [
+      "Designed as a post-match workflow rather than live match polling.",
+      "Separated research, writing, direction, production, and publishing preparation into distinct agent roles.",
+      "Publishing credentials are optional configuration; actual uploads require the relevant platform credentials.",
+    ],
+    evaluation: {
+      summary:
+        "The repository documents a demo mode and workflow but does not publish quantitative output-quality results. Actual platform uploads are not claimed.",
+      notes: [
+        "YouTube, Instagram, and TikTok integrations require platform configuration. Instagram publishing also requires a publicly reachable video URL.",
+      ],
+    },
+    status: "Public repository · post-match workflow",
+    githubUrl: "https://github.com/asgharali2049/wc-shorts-pipeline",
+    visual: {
+      kind: "video",
+      accent: "#c18a49",
+      index: "POST-MATCH PIPELINE / 05",
+      caption: "Five agents · sequential production",
+    },
+  },
+  {
+    slug: "data-synthesizer",
+    number: "07",
+    title: "Cold-Start Data Synthesizer",
+    category: "Synthetic Data / AI Engineering",
+    summary:
+      "A local-LLM pipeline for generating schema-validated synthetic documents from a template.",
+    description:
+      "A public project that generates synthetic documents from a supplied template using a local Llama 3 model through Ollama, validates generated records, and writes JSONL output.",
+    problem:
+      "Training and testing AI systems in specialized domains can require domain-shaped documents while real records may be private or regulated. This tool explores generating synthetic examples locally from a template.",
+    approach:
+      "The documented pipeline accepts a text template, extracts structure and fields, uses Llama 3 through Ollama to produce variations, validates records against a Pydantic schema, and saves accepted results as JSONL.",
+    features: [
+      "Text-template input for synthetic document generation.",
+      "Local Llama 3 generation through Ollama.",
+      "Pydantic schema validation with invalid-output retry or skip behavior.",
+      "JSONL output for downstream AI data workflows.",
+      "Streamlit interface for template upload, target count, and generation status.",
+    ],
+    architecture:
+      "Template input → structure extraction → local LLM generation → Pydantic validation → JSONL output. A Streamlit interface provides controls and generation monitoring.",
+    diagrams: [
+      {
+        title: "Synthetic document generation",
+        steps: [
+          "Text template",
+          "Local LLM generation",
+          "Pydantic validation",
+          "JSONL output",
+        ],
+      },
+    ],
+    technologies: ["Python", "Ollama", "Llama 3", "Pydantic", "Streamlit", "JSONL"],
+    decisions: [
+      "Uses local model inference rather than a paid external generation API.",
+      "Validates generated records against a schema before including them in output.",
+      "Keeps generated examples synthetic rather than using real private documents.",
+    ],
+    evaluation: {
+      summary:
+        "The repository describes the workflow and intended use but does not publish a quantitative quality benchmark.",
+    },
+    status: "Public GitHub repository",
+    githubUrl: "https://github.com/asgharali2049/Data-Synthesizer",
+    visual: {
+      kind: "research",
+      accent: "#a9a0c1",
+      index: "DATA PIPELINE / 07",
+      caption: "Template · validation · JSONL",
+    },
+  },
+  {
+    slug: "universal-streamer",
+    number: "08",
+    title: "Universal Streamer",
+    category: "Web Development / Media Playback",
+    summary:
+      "A vanilla JavaScript web player that brings YouTube, HLS streams, and direct video playback into one interface.",
+    description:
+      "A browser-based streaming application built with vanilla JavaScript, HTML, and CSS. Its player detects supported URL types and selects YouTube embedding, HLS playback, or native HTML5 video.",
+    problem:
+      "Different video sources require different playback mechanisms. This project provides a unified interface that detects the source and selects an appropriate browser player.",
+    approach:
+      "A URL-detection layer selects the YouTube iframe API, HLS.js for M3U8 streams, or the native HTML5 player for direct MP4/WebM files. The repository also documents a sidebar history with captured thumbnails and stream categories.",
+    features: [
+      "YouTube iframe playback.",
+      "HLS stream playback through HLS.js.",
+      "Native HTML5 playback for direct MP4 and WebM files.",
+      "URL-based player-mode detection.",
+      "Sidebar history with thumbnails and stream categories.",
+    ],
+    architecture:
+      "The browser UI accepts a media URL; a lightweight protocol detector selects the player adapter; playback is handled by the relevant browser or JavaScript player API.",
+    diagrams: [
+      {
+        title: "Media source selection",
+        steps: [
+          "Media URL",
+          "Protocol detection",
+          "YouTube / HLS.js / HTML5",
+          "Playback interface",
+        ],
+      },
+    ],
+    technologies: ["JavaScript", "HTML5", "CSS3", "HLS.js", "YouTube Iframe API"],
+    decisions: [
+      "Uses browser-native technologies without a frontend framework.",
+      "Selects playback strategy from the detected media URL type.",
+    ],
+    evaluation: {
+      summary:
+        "The repository documents player capabilities but does not publish a quantitative playback benchmark.",
+    },
+    status: "Public GitHub repository",
+    githubUrl: "https://github.com/asgharali2049/Universal-Streamer",
+    visual: {
+      kind: "video",
+      accent: "#84a9a0",
+      index: "MEDIA PLAYER / 08",
+      caption: "One interface · multiple playback engines",
+    },
+  },
+  {
+    slug: "river-city-demo",
+    number: "10",
+    title: "River City Hospital Demo",
+    category: "Client Work / Website Demonstration",
+    summary:
+      "A client-facing demonstration website for River City Hospital featuring a WhatsApp chatbot widget.",
+    description:
+      "A demonstration website created for River City Hospital featuring a WhatsApp chatbot widget. It is presented as client-facing demo work; a live production deployment is not claimed.",
+    problem:
+      "The demo explores how a healthcare website can present organization information alongside a direct conversational contact point.",
+    approach:
+      "A static website demonstration with a WhatsApp chatbot widget. The public repository contains the website source; this portfolio does not claim production hosting or ongoing operation.",
+    features: [
+      "Static website demonstration.",
+      "WhatsApp chatbot widget.",
+      "Client-facing demonstration work for River City Hospital.",
+    ],
+    architecture:
+      "The public repository contains a browser-rendered website demonstration. The WhatsApp widget provides a link-out contact interaction rather than a claimed backend chatbot deployment.",
+    diagrams: [
+      {
+        title: "Demonstration website",
+        steps: ["Website content", "WhatsApp widget", "Visitor contact path"],
+      },
+    ],
+    technologies: ["HTML"],
+    decisions: [
+      "Presented as demonstration/client-facing work, not as a verified live production deployment.",
+    ],
+    evaluation: {
+      summary:
+        "No usage metrics or production deployment results are claimed for this demonstration website.",
+    },
+    status: "Client-facing demonstration · public source",
+    githubUrl: "https://github.com/asgharali2049/river-city-demo",
+    visual: {
+      kind: "business",
+      accent: "#c18a49",
+      index: "CLIENT DEMO / 10",
+      caption: "Website demonstration · WhatsApp contact",
+    },
+  },
+  {
+    slug: "hamza-travel-demo",
+    number: "11",
+    title: "Hamza Travel & Tours Demo",
+    category: "Client Work / Website Demonstration",
+    summary:
+      "A client-facing demonstration website for Hamza Travel & Tours featuring a WhatsApp chatbot widget.",
+    description:
+      "A demonstration website created for Hamza Travel & Tours featuring a WhatsApp chatbot widget. It is presented as client-facing demo work; a live production deployment is not claimed.",
+    problem:
+      "The demo explores a simple web presence for a travel service with a direct messaging contact path.",
+    approach:
+      "A static website demonstration with a WhatsApp chatbot widget. The public repository contains the website source; this portfolio does not claim production hosting or ongoing operation.",
+    features: [
+      "Static website demonstration.",
+      "WhatsApp chatbot widget.",
+      "Client-facing demonstration work for Hamza Travel & Tours.",
+    ],
+    architecture:
+      "The public repository contains a browser-rendered website demonstration. The WhatsApp widget provides a link-out contact interaction rather than a claimed backend chatbot deployment.",
+    diagrams: [
+      {
+        title: "Demonstration website",
+        steps: ["Website content", "WhatsApp widget", "Visitor contact path"],
+      },
+    ],
+    technologies: ["HTML"],
+    decisions: [
+      "Presented as demonstration/client-facing work, not as a verified live production deployment.",
+    ],
+    evaluation: {
+      summary:
+        "No usage metrics or production deployment results are claimed for this demonstration website.",
+    },
+    status: "Client-facing demonstration · public source",
+    githubUrl: "https://github.com/asgharali2049/hamza-travel-demo",
+    visual: {
+      kind: "business",
+      accent: "#84a9a0",
+      index: "CLIENT DEMO / 11",
+      caption: "Travel website demonstration",
+    },
+  },
+  {
+    slug: "bin-saleh-demo",
+    number: "12",
+    title: "Bin Saleh Demo",
+    category: "Website Demonstration",
+    summary:
+      "A static website demonstration published as a public GitHub repository.",
+    description:
+      "A static website demonstration in a public GitHub repository. The repository does not provide additional project documentation, so no further functionality or deployment claims are made here.",
+    problem:
+      "This repository preserves a standalone website demonstration.",
+    approach:
+      "The repository contains an HTML page intended to be opened in a browser.",
+    features: ["Static HTML website demonstration."],
+    architecture:
+      "A browser-rendered HTML page served from the repository.",
+    diagrams: [
+      {
+        title: "Website demonstration",
+        steps: ["HTML page", "Browser rendering"],
+      },
+    ],
+    technologies: ["HTML"],
+    decisions: [
+      "Kept the description limited to what is established by the public repository contents.",
+    ],
+    evaluation: {
+      summary:
+        "The repository does not publish usage, benchmark, or production deployment results.",
+    },
+    status: "Public GitHub repository · demonstration",
+    githubUrl: "https://github.com/asgharali2049/bin-saleh-demo",
+    visual: {
+      kind: "behavior",
+      accent: "#c5ad85",
+      index: "WEB DEMO / 12",
+      caption: "Static website demonstration",
+    },
+  },
+  {
     slug: "movie-vibe-recommender",
-    number: "04",
+    number: "09",
     title: "Movie Vibe Recommender",
     category: "Machine Learning / Recommendation Systems",
     summary:
@@ -471,11 +764,15 @@ export const projects: Project[] = [
     visual: {
       kind: "recommendation",
       accent: "#d0a76e",
-      index: "CONTENT SIGNAL / 04",
+      index: "CONTENT SIGNAL / 09",
       caption: "Text vectors · similarity ranking",
     },
   },
 ];
+
+projects.sort((a, b) => Number(a.number) - Number(b.number));
+
+export const featuredProjects = projects.slice(0, 6);
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

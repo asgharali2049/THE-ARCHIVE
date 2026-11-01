@@ -2,10 +2,10 @@ import Link from "next/link";
 import { projects } from "./projectData";
 import { ProjectArtwork } from "./ProjectArtwork";
 
-export function ProjectCards() {
+export function ProjectCards({ items = projects }: { items?: typeof projects } = {}) {
   return (
     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => (
+          {items.map((project) => (
             <article key={project.slug} className="group min-w-0">
               <Link
                 href={`/projects/${project.slug}`}
