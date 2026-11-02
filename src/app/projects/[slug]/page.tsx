@@ -17,13 +17,25 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return { title: "Project not found — THE ARCHIVE" };
 
+  const canonicalPath = `/projects/${slug}`;
+  const title = `${project.title} — THE ARCHIVE`;
+
   return {
-    title: `${project.title} — THE ARCHIVE`,
+    title,
     description: project.summary,
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
-      title: `${project.title} — THE ARCHIVE`,
+      title,
       description: project.summary,
       type: "article",
+      url: canonicalPath,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description: project.summary,
     },
   };
 }

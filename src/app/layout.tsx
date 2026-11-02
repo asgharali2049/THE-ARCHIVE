@@ -13,8 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://asgharali2049.vercel.app"),
   title: "THE ARCHIVE — Engineering Portfolio",
   description: "A personal engineering portfolio set in an underground archive.",
+  openGraph: {
+    type: "website",
+    siteName: "THE ARCHIVE",
+    locale: "en_US",
+    title: "THE ARCHIVE — Engineering Portfolio",
+    description: "A personal engineering portfolio set in an underground archive.",
+  },
+  twitter: {
+    card: "summary",
+    title: "THE ARCHIVE — Engineering Portfolio",
+    description: "A personal engineering portfolio set in an underground archive.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
