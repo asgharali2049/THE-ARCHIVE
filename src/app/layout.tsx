@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://asgharali2049.vercel.app"),
   title: "THE ARCHIVE — Engineering Portfolio",
   description: "A personal engineering portfolio set in an underground archive.",
+  verification: {
+    google: "jEDlzvbucNKjn6baxSeCZ8sFJNt0JnJNOiUmgy2ZtK0",
+  },
   openGraph: {
     type: "website",
     siteName: "THE ARCHIVE",
