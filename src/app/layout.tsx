@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     title: "THE ARCHIVE — Engineering Portfolio",
     description: "A personal engineering portfolio set in an underground archive.",
   },
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
